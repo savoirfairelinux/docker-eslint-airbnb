@@ -2,8 +2,7 @@ FROM node:carbon-alpine
 
 RUN mkdir /eslint
 WORKDIR /eslint
-COPY ./package.json /eslint/
 
-RUN npm install
+RUN npm info "eslint-config-airbnb@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install -g "eslint-config-airbnb@latest"
 
-ENTRYPOINT npm run lint -- /code/"$ESLINT_PATH"
+ENTRYPOINT ["eslint"]
