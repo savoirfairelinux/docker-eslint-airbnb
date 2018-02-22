@@ -6,4 +6,4 @@ COPY ./package.json /eslint/
 
 RUN npm install
 
-ENTRYPOINT /eslint/node_modules/eslint/bin/eslint.js /code/"$ESLINT_PATH"
+ENTRYPOINT npm run lint -- /code/"$ESLINT_PATH"
